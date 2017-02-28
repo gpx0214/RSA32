@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>取模</title>
+</head>
+<body>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<script type="text/javascript">
+<!--
+//document.writeln((1<<30) +"<br />");
+function powmod(m,e,n){
+    var ret=1;
+    var ret2=new Array(32);//__int64 ret2[64];
+	var i=0;
+    for(i=0;i<=30;i++)//signed 32bit
+    {
+        if(i==0)
+        {
+            ret2[0]=m%n;
+        }else{
+            ret2[i]=(ret2[i-1]*ret2[i-1])%n;
+        }
+        //document.writeln("m\^\(2\^"+i+"\)="+ret2[i]+"<br />");//printf("m\^\(2\^%d\)=%I64d\n",i,ret2[i]);
+        if((e>>i)%2)ret=(ret*ret2[i])%n;
+    }
+	//document.writeln(ret+"<br />");
+    return ret%n;
+}
+//document.writeln(powmod(5234673,3674911,6012707)+"<br />");
+//document.writeln(powmod(3650502,422191,6012707)+"<br />");
+
+function getQueryString(name) { 
+var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+var r = window.location.search.substr(1).match(reg); 
+if (r != null) return unescape(r[2]); return null; 
+} 
+//-->
+</script>
+<form name='powmod1' target="_self">
+powmod<br />
+<input type="text" name='m' id='m' value=0 size="30" placeholder="m" />
+<input type="text" name='e' id='e' value=1 size="15" placeholder="e" />
+<input type="text" name='n' id='n' value=2e9 size="15" placeholder="n" />
+<input type="button" value="cal" onclick="document.getElementById('result').innerHTML=powmod(Number(document.getElementById('m').value),Number(document.getElementById('e').value),Number(document.getElementById('n').value))" />
+</form>
+<div id="result"></div>
+
+</body>
+</html>
