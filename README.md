@@ -1,5 +1,5 @@
 # RSA32
-homework of information security class
+RSA calculating homework helper of information security basic class
 
 ## 20160428扩展欧几里得算法递归求私钥.cpp 
 用到递归，没完全打包函数
